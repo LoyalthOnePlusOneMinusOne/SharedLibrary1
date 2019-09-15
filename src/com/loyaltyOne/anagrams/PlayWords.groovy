@@ -1,3 +1,10 @@
+#!usr/bin/env groovy
+
+/************
+ * LoylatyOne Anagram Pipeline
+ *
+ */
+
 package com.loyaltyOne.anagrams;
 
 def debug=0
@@ -10,15 +17,6 @@ def speak() {
     sh("whoami")
     echo pwd()
     sh("env")
-
-    stages{
-        stage("test1"){
-            setps{
-                println "haha"
-            }
-
-        }
-    }
 
     stage('Checkout'){
         dir(env.REPO_NAME) {

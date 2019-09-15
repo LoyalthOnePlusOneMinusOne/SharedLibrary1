@@ -11,6 +11,15 @@ def speak() {
     echo pwd()
     sh("env")
 
+    stages{
+        stage(){
+            setps{
+                println "haha"
+            }
+
+        }
+    }
+
     stage('Checkout'){
         dir(env.REPO_NAME) {
             timeout(time: 600, unit: 'SECONDS') {

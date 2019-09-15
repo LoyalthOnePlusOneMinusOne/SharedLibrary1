@@ -12,7 +12,7 @@ def speak() {
     sh("env")
 
     stages{
-        stage(){
+        stage("test1"){
             setps{
                 println "haha"
             }

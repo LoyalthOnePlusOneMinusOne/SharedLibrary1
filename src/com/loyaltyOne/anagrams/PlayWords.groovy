@@ -37,24 +37,23 @@ def speak() {
         }
     }
 
-
-    stage('Initialize'){
+    stage('Build'){
+        timeout(time: 1800, unit: 'SECONDS') {
+            sh """npm install -verbose"""
+        }
     }
-    stage('Initialize'){
+    stage('CodeQualityTest'){
     }
-    stage('Initialize'){
+    stage('SecurityTest'){
     }
-    stage('Initialize'){
+    stage('PerformanceTest'){
     }
-    stage('Initialize'){
+    stage('Approval'){
     }
-    stage('Initialize'){
+    stage('Deploy'){
     }
-    stage('Initialize'){
+    stage('IntegrationTest'){
     }
-    stage('Initialize'){
-    }
-
 } //end of speak
 
 

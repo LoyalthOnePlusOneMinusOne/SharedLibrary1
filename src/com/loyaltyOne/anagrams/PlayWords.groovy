@@ -7,10 +7,10 @@
 
 package com.loyaltyOne.anagrams;
 
-def debug=0
+def debug = 0
 
 def speak() {
-    stage('Initialize'){
+    stage('Initialize') {
         deleteDir()
     }
 
@@ -18,41 +18,39 @@ def speak() {
     echo pwd()
     sh("env")
 
-    stage('Checkout'){
-        dir(env.REPO_NAME) {
-            timeout(time: 600, unit: 'SECONDS') {
-                try {
-                    checkout([
-                            $class: 'GitSCM',
-                            branches: scm.branches,
-                            doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
-                            extensions: scm.extensions,
-                            userRemoteConfigs: scm.userRemoteConfigs
-                    ])
-                } catch (e) {
-                    println "Error on the stage, Checkout"
-                    throw e
-                }
+    stage('Checkout') {
+        timeout(time: 600, unit: 'SECONDS') {
+            try {
+                checkout([
+                        $class                           : 'GitSCM',
+                        branches                         : scm.branches,
+                        doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
+                        extensions                       : scm.extensions,
+                        userRemoteConfigs                : scm.userRemoteConfigs
+                ])
+            } catch (e) {
+                println "Error on the stage, Checkout"
+                throw e
             }
         }
     }
 
-    stage('Build'){
+    stage('Build') {
         timeout(time: 1800, unit: 'SECONDS') {
             sh """npm install -verbose"""
         }
     }
-    stage('CodeQualityTest'){
+    stage('CodeQualityTest') {
     }
-    stage('SecurityTest'){
+    stage('SecurityTest') {
     }
-    stage('PerformanceTest'){
+    stage('PerformanceTest') {
     }
-    stage('Approval'){
+    stage('Approval') {
     }
-    stage('Deploy'){
+    stage('Deploy') {
     }
-    stage('IntegrationTest'){
+    stage('IntegrationTest') {
     }
 } //end of speak
 

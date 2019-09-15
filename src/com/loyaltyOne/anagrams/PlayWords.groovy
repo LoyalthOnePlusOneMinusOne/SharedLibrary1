@@ -29,7 +29,7 @@ def speak() {
                             extensions: scm.extensions,
                             userRemoteConfigs: scm.userRemoteConfigs
                     ])
-                } cache (e) {
+                } catch (e) {
                     println "Error on the stage, Checkout"
                     throw e
                 }

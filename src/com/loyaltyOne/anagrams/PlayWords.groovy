@@ -11,7 +11,7 @@ def debug = 0
 
 def speak() {
     stage('Initialize') {
-        deleteDir()
+        println "initializing..."
     }
 
     sh("whoami")
@@ -49,6 +49,16 @@ def speak() {
     stage('Approval') {
     }
     stage('Deploy') {
+        println "Deploying to GCP..."
+
+        sh """
+            gcloud config set project anagrams
+            gcloud builds submit --tag gcr.io/anagrams/anagrams
+            gcloud beta run deploy --image gcr.io/anagrams/anagrams --platform managed
+        """
+
+
+
     }
     stage('IntegrationTest') {
     }

@@ -64,7 +64,7 @@ def speak() {
                        
             gcloud builds submit --tag gcr.io/pro1-253200/anagrams
 
-            gcloud beta run deploy --image gcr.io/pro1-253200/anagrams --platform managed
+            gcloud beta run deploy --image gcr.io/pro1-253200/anagrams --platform managed --region 'us-central1'
 
         """
         }

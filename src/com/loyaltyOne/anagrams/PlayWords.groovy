@@ -51,24 +51,25 @@ def speak() {
     stage('Deploy') {
         println "Deploying to GCP..."
 
-          def GOOGLE_PROJECT_ID = 'pro1-253200';
 
-          def GOOGLE_SERVICE_ACCOUNT_KEY = credentials('service_account_key1');
 
-        echo "This is the credentails:${GOOGLE_SERVICE_ACCOUNT_KEY}"
-        println "Init success..";
+        withCredentials([file(credentialsId: 'service_account_key1', variable: 'GCP_SERVICE_KEY')]) {
+            echo "This is the credentails: ${GCP_SERVICE_KEY}"
 
-        sh """
+            sh """
 
             gcloud config set project pro1-253200
 
-            gcloud auth activate-service-account --key-file ${GOOGLE_SERVICE_ACCOUNT_KEY}
+            gcloud auth activate-service-account --key-file ${GCP_SERVICE_KEY}
                        
             gcloud builds submit --tag gcr.io/pro1-253200/anagrams
 
             gcloud beta run deploy --image gcr.io/pro1-253200/anagrams --platform managed
 
         """
+        }
+
+
 
 
 

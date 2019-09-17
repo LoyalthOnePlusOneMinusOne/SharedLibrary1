@@ -51,13 +51,8 @@ def speak() {
     stage('Deploy') {
         println "Deploying to GCP..."
 
-
-
         withCredentials([file(credentialsId: 'service_account_key1', variable: 'GCP_SERVICE_KEY')]) {
-            echo "This is the credentails: ${GCP_SERVICE_KEY}"
-
             sh """
-
             gcloud config set project pro1-253200
 
             gcloud auth activate-service-account --key-file ${GCP_SERVICE_KEY}
@@ -65,14 +60,8 @@ def speak() {
             gcloud builds submit --tag gcr.io/pro1-253200/anagrams
 
             gcloud beta run deploy --image gcr.io/pro1-253200/anagrams --platform managed --region us-central1 --quiet anagrams
-
-        """
+            """
         }
-
-
-
-
-
     }
     stage('IntegrationTest') {
     }

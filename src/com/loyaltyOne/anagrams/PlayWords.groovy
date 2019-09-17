@@ -51,11 +51,12 @@ def speak() {
     stage('Deploy') {
         println "Deploying to GCP..."
 
-        environment {
-            GOOGLE_PROJECT_ID = 'pro1-253200';
+          def GOOGLE_PROJECT_ID = 'pro1-253200';
 
-            GOOGLE_SERVICE_ACCOUNT_KEY = credentials('service_account_key1');
-        }
+          def GOOGLE_SERVICE_ACCOUNT_KEY = credentials('service_account_key1');
+
+        echo "This is the credentails:${GOOGLE_SERVICE_ACCOUNT_KEY}"
+        println "Init success..";
 
         sh """
 

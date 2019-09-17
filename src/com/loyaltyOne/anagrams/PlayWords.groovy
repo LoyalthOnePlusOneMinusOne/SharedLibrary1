@@ -52,9 +52,15 @@ def speak() {
         println "Deploying to GCP..."
 
         sh """
-            gcloud config set project anagrams
-            gcloud builds submit --tag gcr.io/anagrams/anagrams
-            gcloud beta run deploy --image gcr.io/anagrams/anagrams --platform managed
+
+            gcloud config set project pro1-253200
+
+            gcloud auth activate-service-account --key-file '45249a6e04895ee80a5a5f81bc2769e93dcef955'
+           
+            gcloud builds submit --tag gcr.io/pro1-253200/anagrams
+
+            gcloud beta run deploy --image gcr.io/pro1-253200/anagrams --platform managed
+
         """
 
 
